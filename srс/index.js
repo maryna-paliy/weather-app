@@ -37,6 +37,8 @@ function showTemp(response) {
   location.innerHTML = `${response.data.name}`;
   let weatherType = document.querySelector(".weather");
   weatherType.innerHTML = `${response.data.weather[0].main}`;
+  let windSpeed = document.querySelector(".wind-speed");
+  windSpeed.innerHTML = Math.round(`${response.data.wind.speed}`);
 }
 function search(city) {
   let apiKey = "0850737b187ff240978d0480433b9b8c";
