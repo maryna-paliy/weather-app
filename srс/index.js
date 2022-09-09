@@ -39,6 +39,8 @@ function showTemp(response) {
   weatherType.innerHTML = `${response.data.weather[0].main}`;
   let windSpeed = document.querySelector(".wind-speed");
   windSpeed.innerHTML = Math.round(`${response.data.wind.speed}`);
+
+  celsiusTemp = response.data.main.temp;
 }
 function search(city) {
   let apiKey = "0850737b187ff240978d0480433b9b8c";
@@ -72,20 +74,25 @@ function getLocation(event) {
 let currentLocationTemp = document.querySelector("#current-location-temp");
 currentLocationTemp.addEventListener("click", getLocation);
 
-search("Kharkiv");
+search("Kyiv");
 
-// function seeFahrenheit(event) {
-//   event.preventDefault();
-//   let mainTemprature = document.querySelector(".temp");
-//   mainTemprature.innerHTML = `50°F`;
-// }
-// let toFahrenheit = document.querySelector("#fahrenheit");
-// toFahrenheit.addEventListener("click", seeFahrenheit);
+function seeFahrenheit(event) {
+  event.preventDefault();
+  let mainTemprature = document.querySelector(".temp");
+  let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
 
-// function seeCelsius(event) {
-//   event.preventDefault();
-//   let mainTemprature = document.querySelector(".temp");
-//   mainTemprature.innerHTML = `22°C`;
-// }
-// let toCelsius = document.querySelector("#celsius");
-// toCelsius.addEventListener("click", seeCelsius);
+  mainTemprature.innerHTML = `${Math.round(fahrenheitTemp)}°F`;
+}
+
+let celsiusTemp = null;
+
+let toFahrenheit = document.querySelector("#fahrenheit");
+toFahrenheit.addEventListener("click", seeFahrenheit);
+
+function seeCelsius(event) {
+  event.preventDefault();
+  let mainTemprature = document.querySelector(".temp");
+  mainTemprature.innerHTML = `${Math.round(celsiusTemp)}°C`;
+}
+let toCelsius = document.querySelector("#celsius");
+toCelsius.addEventListener("click", seeCelsius);
