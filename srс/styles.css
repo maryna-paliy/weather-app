@@ -27,21 +27,20 @@ body {
   font-size: 20px;
   padding: 10px 0 0 10px;
   margin: 0;
-  font-size: 16px;
 }
 .time {
   padding: 0 0 0 10px;
   margin: 0;
-  font-size: 16px;
 }
 .temp {
   font-size: 100px;
   font-weight: 200;
   padding: 0 0 0 10px;
   margin: 0;
-  margin-top: 20%;
+  margin-top: 5%;
 }
 .unit {
+  font-size: 15px;
   padding: 0 0 0 10px;
   margin: 0;
 }
@@ -54,15 +53,11 @@ body {
   text-decoration: none;
 }
 .location {
-  font-size: 25px;
+  font-size: 20px;
   padding: 0 0 0 10px;
   margin: 0;
 }
 .weather {
-  padding: 0 0 0 10px;
-  margin: 0;
-}
-.wind {
   padding: 0 0 0 10px;
   margin: 0;
 }
@@ -74,4 +69,12 @@ body {
   margin-bottom: 0;
   font-size: 10px;
   text-align: right;
+}
+.wind {
+  padding: 0 0 0 10px;
+  margin: 0;
+}
+.icon {
+  margin: 0;
+  padding: 0 0 0 10px;
 }
