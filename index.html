@@ -28,24 +28,17 @@
         <div class="row">
           <div class="col-4 pe-0">
             <div class="h-100 w-100 current-info-card">
-              <p class="date">August 05, 2022</p>
-              <p class="time">12:37</p>
-              <p class="location">Kyiv</p>
-              <p class="icon">
-                <img
-                  src=""
-                  width="30"
-                  height="30"
-                  alt="Clear"
-                  id="icon"
-                  class="float-left"
-                />
-                <span class="weather">Cloudy</span>
+              <p class="date"></p>
+              <p class="time"></p>
+              <p class="location"></p>
+              <p class="weather-type">
+                <img src="" width="30" id="icon" />
+                <span class="weather"></span>
               </p>
               <p class="wind">
-                Wind Speed: <span class="wind-speed">10</span>km/h
+                Wind Speed: <span class="wind-speed"></span>km/h
               </p>
-              <p class="temp">22°C</p>
+              <p class="temp"></p>
               <p class="unit">
                 <a href="#" id="celsius">°C</a> |
                 <a href="#" id="fahrenheit">°F</a>
@@ -55,13 +48,8 @@
           <div class="col-8 border-start pe-4">
             <p class="forecast">Forecast</p>
             <hr />
-            <table class="table">
-              <tr>
-                <td>Today</td>
-                <td>Cloudy</td>
-                <td>27°C ☁</td>
-              </tr>
-              <tr>
+            <div id="forecast"></div>
+            <!-- <tr>
                 <td>Tomorrow</td>
                 <td>Mostly Cloudy</td>
                 <td>30°C ⛅</td>
@@ -80,9 +68,9 @@
                 <td>Tuesday</td>
                 <td>Mostly Cloudy</td>
                 <td>24°C ⛅</td>
-              </tr>
-            </table>
-            <br />
+              </tr> -->
+            <!-- </table> -->
+
             <form id="search-city">
               <div class="input-group">
                 <input

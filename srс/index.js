@@ -29,6 +29,32 @@ if (min < 10) {
 }
 time.innerHTML = `${hour}:${min}`;
 
+function showForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<table class="table">`;
+  let days = ["Today", "Tomorrow", "Friday", "Saturday", "Sunday"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+    <tr>
+      <td>${day}</td>
+      <td>Cloudy</td>
+      <td>
+         27°C
+        <img src="https://openweathermap.org/img/wn/50d@2x.png" width="25" id="icon"/>
+      </td>
+    </tr>`;
+  });
+  forecastHTML = forecastHTML + `</table>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  console.log(coordinates);
+}
+
 function showTemp(response) {
   let temperature = Math.round(response.data.main.temp);
   let currentTemp = document.querySelector(".temp");
@@ -45,8 +71,9 @@ function showTemp(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
-
   celsiusTemp = response.data.main.temp;
+
+  getForecast(response.data.coord);
 }
 function search(city) {
   let apiKey = "0850737b187ff240978d0480433b9b8c";
@@ -80,8 +107,6 @@ function getLocation(event) {
 let currentLocationTemp = document.querySelector("#current-location-temp");
 currentLocationTemp.addEventListener("click", getLocation);
 
-search("Kyiv");
-
 function seeFahrenheit(event) {
   event.preventDefault();
   let mainTemprature = document.querySelector(".temp");
@@ -102,3 +127,6 @@ function seeCelsius(event) {
 }
 let toCelsius = document.querySelector("#celsius");
 toCelsius.addEventListener("click", seeCelsius);
+
+search("Kyiv");
+showForecast();
