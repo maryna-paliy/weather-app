@@ -29,23 +29,45 @@ if (min < 10) {
 }
 time.innerHTML = `${hour}:${min}`;
 
-function showForecast() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+  return days[day];
+}
+
+function showForecast(response) {
+  let forecast = response.data.daily;
+
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<table class="table">`;
-  let days = ["Today", "Tomorrow", "Friday", "Saturday", "Sunday"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
     <tr>
-      <td>${day}</td>
-      <td>Cloudy</td>
+      <td>${formatDay(forecastDay.dt)}</td>
+      <td>${forecastDay.weather[0].main}</td>
       <td>
-         27°C
-        <img src="https://openweathermap.org/img/wn/50d@2x.png" width="25" id="icon"/>
+        <img src="https://openweathermap.org/img/wn/${
+          forecastDay.weather[0].icon
+        }@2x.png" width="25" id="icon"/>
       </td>
+      <td class="maxTemp">${Math.round(forecastDay.temp.max)}°C</td>
+      <td>${Math.round(forecastDay.temp.min)}°C</td>
     </tr>`;
+    }
   });
   forecastHTML = forecastHTML + `</table>`;
   forecastElement.innerHTML = forecastHTML;
@@ -53,6 +75,10 @@ function showForecast() {
 
 function getForecast(coordinates) {
   console.log(coordinates);
+  let apiKey = "50c2acd53349fabd54f52b93c8650d37";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(showForecast);
 }
 
 function showTemp(response) {
@@ -129,4 +155,3 @@ let toCelsius = document.querySelector("#celsius");
 toCelsius.addEventListener("click", seeCelsius);
 
 search("Kyiv");
-showForecast();
