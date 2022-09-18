@@ -65,7 +65,7 @@ function showForecast(response) {
         }@2x.png" width="25" id="icon"/>
       </td>
       <td class="maxTemp">${Math.round(forecastDay.temp.max)}°C</td>
-      <td>${Math.round(forecastDay.temp.min)}°C</td>
+      <td class="minTemp">${Math.round(forecastDay.temp.min)}°C</td>
     </tr>`;
     }
   });
@@ -74,10 +74,8 @@ function showForecast(response) {
 }
 
 function getForecast(coordinates) {
-  console.log(coordinates);
   let apiKey = "50c2acd53349fabd54f52b93c8650d37";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-  console.log(apiUrl);
   axios.get(apiUrl).then(showForecast);
 }
 
@@ -117,7 +115,6 @@ let changeCity = document.querySelector("#search-city");
 changeCity.addEventListener("submit", searchCity);
 
 function showPosition(position) {
-  console.log(position);
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
   let apiKey = "0850737b187ff240978d0480433b9b8c";
@@ -132,26 +129,5 @@ function getLocation(event) {
 
 let currentLocationTemp = document.querySelector("#current-location-temp");
 currentLocationTemp.addEventListener("click", getLocation);
-
-function seeFahrenheit(event) {
-  event.preventDefault();
-  let mainTemprature = document.querySelector(".temp");
-  let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
-
-  mainTemprature.innerHTML = `${Math.round(fahrenheitTemp)}°F`;
-}
-
-let celsiusTemp = null;
-
-let toFahrenheit = document.querySelector("#fahrenheit");
-toFahrenheit.addEventListener("click", seeFahrenheit);
-
-function seeCelsius(event) {
-  event.preventDefault();
-  let mainTemprature = document.querySelector(".temp");
-  mainTemprature.innerHTML = `${Math.round(celsiusTemp)}°C`;
-}
-let toCelsius = document.querySelector("#celsius");
-toCelsius.addEventListener("click", seeCelsius);
 
 search("Kyiv");

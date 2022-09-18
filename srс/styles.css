@@ -36,21 +36,8 @@ body {
   font-weight: 200;
   padding: 0 0 0 10px;
   margin: 0;
-  margin-top: 23%;
+  margin-top: 30%;
   line-height: normal;
-}
-.unit {
-  font-size: 15px;
-  padding: 0 0 0 10px;
-  margin: 0;
-}
-#celsius {
-  color: white;
-  text-decoration: none;
-}
-#fahrenheit {
-  color: white;
-  text-decoration: none;
 }
 .location {
   font-size: 25px;
@@ -83,4 +70,7 @@ body {
 }
 .maxTemp {
   text-align: right;
+}
+.minTemp {
+  color: #0000007a;
 }
